@@ -32,5 +32,7 @@
                 {{ $slot }}
             </main>
         </div>
+
+    @include('chatbox')
     </body>
 </html>
