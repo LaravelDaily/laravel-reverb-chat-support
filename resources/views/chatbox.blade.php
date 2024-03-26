@@ -89,7 +89,25 @@
                     .replace('MESSAGE', message);
                 messagesList.innerHTML += newMessage;
 
+                messagesList.scrollTop = messagesList.scrollHeight;
+
                 document.getElementById('message').value = '';
+            });
+    });
+
+    window.addEventListener('DOMContentLoaded', function () {
+        // Listen for events via echo
+        window.Echo.private('adminRepliedToChatRoom.' + identifier)
+            .listen('AdminSentChatMessageEvent', (e) => {
+                const messagesList = document.getElementById('messagesList');
+                const messageTemplate = document.querySelector('script[type="text/html"]').innerHTML;
+
+                const newMessage = messageTemplate
+                    .replace('_POSITION_', 'text-left')
+                    .replace('_SENDER_', 'Customer Support')
+                    .replace('MESSAGE', e.message);
+                messagesList.innerHTML += newMessage;
+                messagesList.scrollTop = messagesList.scrollHeight;
             });
     });
 </script>

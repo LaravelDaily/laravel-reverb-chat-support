@@ -62,5 +62,18 @@
                     document.getElementById('reply').value = '';
                 });
         });
+
+        window.addEventListener('DOMContentLoaded', function () {
+            // Listen for new messages
+            window.Echo.private('userRepliedToChatRoom.{{ $chatRoom->id }}')
+                .listen('UserSendChatMessageEvent', (e) => {
+                    let template = document.querySelector('script[type="text/html"]').innerHTML;
+                    template = template.replace('_POSITION_', '');
+                    template = template.replace('_NAME_', e.chatMessage.user.name);
+                    template = template.replace('_MESSAGE_', e.chatMessage.message);
+
+                    document.getElementById('chat-messages').innerHTML += template;
+                });
+        });
     </script>
 </x-app-layout>

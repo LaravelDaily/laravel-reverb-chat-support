@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserSendChatMessageEvent;
 use App\Models\ChatRoom;
 use Illuminate\Http\Request;
 
@@ -24,10 +25,12 @@ class SendMessageController extends Controller
             ]);
         }
 
-        $chatRoom->chatMessages()->create([
+        $message = $chatRoom->chatMessages()->create([
             'user_id' => auth()->id(),
             'message' => $message
         ]);
+
+        event(new UserSendChatMessageEvent($message));
 
         return response()->json([], 201);
     }
