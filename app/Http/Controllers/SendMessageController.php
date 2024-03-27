@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\UserSendChatMessageEvent;
+use App\Events\UserSentChatMessageEvent;
 use App\Models\ChatRoom;
 use Illuminate\Http\Request;
 
@@ -30,7 +30,7 @@ class SendMessageController extends Controller
             'message' => $message
         ]);
 
-        event(new UserSendChatMessageEvent($message));
+        event(new UserSentChatMessageEvent($message));
 
         return response()->json([], 201);
     }

@@ -8,7 +8,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 
-class UserSendChatMessageEvent implements ShouldBroadcast
+class UserSentChatMessageEvent implements ShouldBroadcast
 {
     use Dispatchable;
     use InteractsWithSockets;
