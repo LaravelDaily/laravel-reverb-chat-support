@@ -66,7 +66,7 @@
         window.addEventListener('DOMContentLoaded', function () {
             // Listen for new messages
             window.Echo.private('userRepliedToChatRoom.{{ $chatRoom->id }}')
-                .listen('UserSendChatMessageEvent', (e) => {
+                .listen('UserSentChatMessageEvent', (e) => {
                     let template = document.querySelector('script[type="text/html"]').innerHTML;
                     template = template.replace('_POSITION_', '');
                     template = template.replace('_NAME_', e.chatMessage.user.name);
