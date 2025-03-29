@@ -18,7 +18,7 @@ class UserSentChatMessageEvent implements ShouldBroadcast
         $this->chatMessage->load(['chatRoom', 'user']);
     }
 
-    public function broadcastOn()
+    public function broadcastOn(): array
     {
         return [
             new PrivateChannel('userRepliedToChatRoom.' . $this->chatMessage->chatRoom->id),

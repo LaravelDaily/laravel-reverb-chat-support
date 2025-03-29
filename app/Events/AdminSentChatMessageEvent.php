@@ -16,7 +16,7 @@ class AdminSentChatMessageEvent implements ShouldBroadcast
     {
     }
 
-    public function broadcastOn()
+    public function broadcastOn(): array
     {
         return [
             new PrivateChannel('adminRepliedToChatRoom.' . $this->identifier),
